@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import LottieAnimation from "../app/components/LottieAnimation";
-import test from "../public/lottie/test.json";
 
 export default function Home() {
   const lastSectionRef = useRef(null);
@@ -44,10 +42,6 @@ export default function Home() {
         <h2 className="text-3xl font-semibold mb-4">
           Section Mine Deeplase: début de la partie
         </h2>
-        <LottieAnimation
-          animationData={test}
-          className="w-64 h-64"
-        />
       </section>
 
     </main >
