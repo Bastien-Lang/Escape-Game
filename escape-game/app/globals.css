@@ -38,9 +38,8 @@ body {
   padding: 0;
 }
 
-.image {
-  background-image: url('/assets/test-image.png');
-  /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
+.fond_mineshaft {
+  background-image: url('/assets/fond-mineshaft.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
 }
@@ -61,6 +60,15 @@ body {
   display: none;
 
 }
+
+.fond_lushcave {
+  background-image: url('/assets/fond-lushcave.png');
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+
+
+}
+
 
 #lushcave-section {
   display: flex;

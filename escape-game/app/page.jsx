@@ -103,8 +103,8 @@ export default function Home() {
       </section>
 
       {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
-      <section id="lushcave-section" className="h-screen  overflow-hidden bg-slate-700">
-        <div className="maison flex w-[200vw] h-full">
+      <section id="lushcave-section" className="h-screen  overflow-hidden ">
+        <div className={`maison flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_lushcave' : 'fog'}`}>
           <div className="w-screen grid place-items-center">
             <h2 className="text-3xl font-bold text-black">Maison</h2>
           </div>
@@ -117,7 +117,7 @@ export default function Home() {
       {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
       <section id="mineshaft" className="h-screen overflow-hidden">
         {/* Application de la classe 'image' ici, sur l'élément qui fait 200vw */}
-        <div className={`caverne flex w-[200vw] h-full ${showImageWithoutFog ? 'image' : 'fog'
+        <div className={`caverne flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_mineshaft' : 'fog'
           }`}>
 
           {/* Écran 1: Caverne */}
