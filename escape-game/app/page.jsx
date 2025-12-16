@@ -7,6 +7,7 @@ import test from "../public/lottie/test.json";
 import InventoryModal from "../app/components/InventoryModal";
 import { useInventory } from "../app/context/InventoryContext";
 import ItemObtainedModal from "../app/components/ItemObtainedModal";
+import Enigme1 from "./Enigme1";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,6 +166,7 @@ export default function Home() {
         onClose={() => setOpenInventory(false)}
       />
       <ItemObtainedModal />
+      <Enigme1 />
     </main >
   );
 }
