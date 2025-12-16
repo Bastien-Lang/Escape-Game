@@ -1,3 +1,4 @@
+/* Enigme1.jsx */
 import { useState } from "react";
 import Item from "./components/Item";
 import { useInventory } from "./context/InventoryContext";
@@ -130,13 +131,13 @@ export default function Enigme1() {
         setModalState({ ...modalState, isOpen: false });
     }
 
-    
-return (
+
+    return (
         <div className="relative h-full w-full">
             {PUZZLE_CONFIGS.map(puzzle => {
                 const isOpened = openStatuses[puzzle.id];
                 const isReady = !puzzle.prerequisiteItemId || hasItem(puzzle.prerequisiteItemId);
-                
+
                 // NOUVEAU: Vérifie si l'élément doit être masqué (résolu ET openImg est '#')
                 if (isOpened && puzzle.openImg === "#") {
                     return null; // Ne rend rien si la condition de disparition est remplie
@@ -150,7 +151,7 @@ return (
                     // L'image reste l'image initiale si openImg est '#'
                     img: isOpened ? puzzle.initialImg : puzzle.initialImg,
                 };
-                
+
                 return (
                     <div
                         id={puzzle.id}
