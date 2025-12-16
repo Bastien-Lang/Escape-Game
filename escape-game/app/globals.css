@@ -54,11 +54,17 @@ body {
 }
 
 .image-mine_deepslate {
-  background-image: url('/assets/minedeepslate_fond_1.png');
-  background-size: 200vw 100vh;
+  background-image: url('/assets/e1bg.png');
+  background-size: 100vw 100vh;
   background-repeat: no-repeat;
-  display: none;
 
+
+}
+
+.e1Sec {
+  background-image: url(/assets/e1bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fond_lushcave {
@@ -121,13 +127,8 @@ body {
   }
 }
 
-.e1Sec{
-  background-image: url(/assets/e1bg.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
-#box2>div{
+
+#box2>div>img {
   z-index: 10;
 }

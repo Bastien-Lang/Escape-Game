@@ -1,12 +1,9 @@
-export default function Item({ item, top, bottom, left, right}) {
+export default function Item({ item, top, bottom, left, right, width, height }) {
   if (!item) return null;
 
   return (
-    <div
-        className={`absolute ${top ?? ""} ${bottom ?? ""} ${left ?? ""} ${right ?? ""} flex items-center justify-center text-2xl`}
-
-    >
-      {item.img ? <img src={item.img} alt={item.name} /> : item.icon}
+    <div  >
+      {item.img ? <img className={`absolute ${top ?? ""} ${bottom ?? ""} ${left ?? ""} ${right ?? ""} ${width ?? ""} ${height ?? ""} `} src={item.img} alt={item.name} /> : item.icon}
     </div>
   );
 }

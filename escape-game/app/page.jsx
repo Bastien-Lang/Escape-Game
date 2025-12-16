@@ -132,12 +132,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ----------------- SECTION MINE DEEPLASE ----------------- */}
-      <section
-        ref={lastSectionRef}
-        className="e1Sec h-screen flex flex-col items-center justify-center bg-slate-500"
+      {/* ----------------- SECTION MINE DEEPLASE ----  ------------- */}
+      <section ref={lastSectionRef} className=" image-mine_deepslate h-screen flex flex-col items-center justify-center "
       >
-      <Enigme1 />
+        <Enigme1 />
       </section>
 
       {/* ----------------- MODALS & INVENTAIRE (modals) ----------------- */}
