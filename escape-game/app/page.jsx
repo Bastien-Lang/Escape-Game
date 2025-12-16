@@ -19,6 +19,24 @@ export default function Home() {
   const { hasItem, addItem } = useInventory();
   const showImageWithoutFog = hasItem("key");
 
+
+  // LOGIQUE CURSEUR 
+    useEffect(() => {
+    const handleMouseMove = (e) => {
+      document.documentElement.style.setProperty("--x", e.clientX + "px");
+      document.documentElement.style.setProperty("--y", e.clientY + "px");
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    // cleanup obligatoire
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+
+
   // 1. LOGIQUE GSAP (Défilement Horizontal) - Vient de la branche HEAD
   useLayoutEffect(() => {
     const scroller = mainRef.current;
@@ -121,7 +139,7 @@ export default function Home() {
           }`}>
 
           {/* Écran 1: Caverne */}
-          <div className="w-screen grid place-items-center">
+          <div className="caverne w-screen grid place-items-center">
             <h2 className="text-3xl font-bold text-white">Caverne</h2>
           </div>
 
