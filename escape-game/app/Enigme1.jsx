@@ -37,10 +37,9 @@ const PUZZLE_CONFIGS = [
         initialImg: "/assets/e1Pierres.png",
         openImg: null,
         position: { top: 'top-[40%]', right: 'right-[10%]', width: 'w-[50%]', height: 'h-[50%]' },
-
+        nextLocation: '#mineshaft',
         prerequisiteItemId: 'dynamite',
-        reward: { id: 'key', name: 'Droit de passage', img: '#', icon: '🗝️' },
-        nextLocation: '#mineshaft'
+        reward: { id: 'key', name: '', img: '#', icon: '' }
     }
 ];
 
