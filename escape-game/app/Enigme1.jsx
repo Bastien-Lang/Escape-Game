@@ -36,7 +36,7 @@ const PUZZLE_CONFIGS = [
         openImg: null,
         position: { top: 'bottom-15', right: 'right-20' },
         prerequisiteItemId: 'dynamite',
-        reward: { id: 'key', name: 'Droit de passage', img: '#', icon: '🗝️' }
+        reward: { id: 'key', name: '', img: '#', icon: '' }
     }
 ];
 
