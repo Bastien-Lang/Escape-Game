@@ -116,17 +116,20 @@ export default function Home() {
 
       {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
       <section id="mineshaft" className="h-screen overflow-hidden">
-        {/* Application de la classe 'image' ici, sur l'élément qui fait 200vw */}
-        <div className={`caverne flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_mineshaft' : 'fog'
+        {/* Rendre ce conteneur GSAP 'relative' pour ancrer la vidéo absolue */}
+        <div className={`caverne flex w-[200vw] h-full relative ${showImageWithoutFog ? 'fond_mineshaft' : 'fog'
           }`}>
 
-          {/* Écran 1: Caverne */}
-          <div className="w-screen grid place-items-center">
+          {/* 💡 MODIFICATION : La vidéo s'étend sur 100% du conteneur (soit 200vw) */}
+          <video src='/assets/Minecart_Aller.mp4' autoPlay loop muted playsInline className="absolute left-0 top-0 w-full h-full object-cover" />
+
+          {/* Écran 1: Caverne (w-screen) */}
+          <div className="w-screen grid place-items-center z-10">
             <h2 className="text-3xl font-bold text-white">Caverne</h2>
           </div>
 
-          {/* Écran 2: Mineshaft */}
-          <div className="w-screen grid place-items-center">
+          {/* Écran 2: Mineshaft (w-screen) */}
+          <div className="w-screen grid place-items-center z-10">
             <h2 className="text-3xl font-bold text-white">Mineshaft</h2>
           </div>
         </div>
