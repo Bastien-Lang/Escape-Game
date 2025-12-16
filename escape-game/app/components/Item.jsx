@@ -1,4 +1,4 @@
-export default function Item({ item, top, bottom, left, right }) {
+export default function Item({ item, top, bottom, left, right}) {
   if (!item) return null;
 
   return (
