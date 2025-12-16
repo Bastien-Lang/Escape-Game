@@ -89,10 +89,10 @@ export default function Home() {
     // Combinaison des props ref et className
     <main
       ref={mainRef}
-      className="h-screen overflow-y-scroll scroll-smooth"
+      className="h-screen  overflow-y-scroll scroll-smooth"
     >
       {/* ----------------- SECTIONS VERTICALES (Haut) ----------------- */}
-      <section className="h-screen flex flex-col items-center justify-center  bg-slate-900 text-white">
+      <section className="h-screen  flex flex-col items-center justify-center  bg-slate-900 text-white">
         <h1 className="text-4xl font-bold mb-4">Section de la liberté</h1>
       </section>
 
@@ -113,18 +113,23 @@ export default function Home() {
       </section>
 
       {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
-      <section id="mineshaft" className="h-screen  overflow-hidden bg-slate-600">
-        <div className="caverne flex w-[200vw] h-full">
+      <section id="mineshaft" className="h-screen overflow-hidden">
+        {/* Application de la classe 'image' ici, sur l'élément qui fait 200vw */}
+        <div className="caverne flex w-[200vw] h-full image">
+
+          {/* Écran 1: Caverne */}
           <div className="w-screen grid place-items-center">
-            <h2 className="text-3xl font-bold text-black">Caverne</h2>
+            <h2 className="text-3xl font-bold text-white">Caverne</h2>
           </div>
+
+          {/* Écran 2: Mineshaft */}
           <div className="w-screen grid place-items-center">
-            <h2 className="text-3xl font-bold text-black">Mineshaft</h2>
+            <h2 className="text-3xl font-bold text-white">Mineshaft</h2>
           </div>
         </div>
       </section>
 
-      {/* ----------------- SECTION MINE DEEPLASE (Départ Forcé + Lottie) ----------------- */}
+      {/* ----------------- SECTION MINE DEEPSLASE (Départ Forcé + Lottie) ----------------- */}
       <section
         ref={lastSectionRef}
         className="h-screen flex flex-col items-center justify-center bg-slate-500 text-white"
