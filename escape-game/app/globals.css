@@ -81,3 +81,14 @@ body {
     opacity: 1;
   }
 }
+
+.e1Sec{
+  background-image: url(/assets/e1bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#box2>div{
+  z-index: 10;
+}

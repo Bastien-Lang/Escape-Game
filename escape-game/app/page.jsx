@@ -125,29 +125,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ----------------- SECTION MINE DEEPLASE (Départ Forcé + Lottie) ----------------- */}
+      {/* ----------------- SECTION MINE DEEPLASE ----------------- */}
       <section
         ref={lastSectionRef}
-        className="h-screen flex flex-col items-center justify-center bg-slate-500 text-white"
+        className="e1Sec h-screen flex flex-col items-center justify-center bg-slate-500"
       >
-        <h2 className="text-3xl font-semibold mb-4">
-          Section Mine Deeplase: début de la partie
-        </h2>
-
-        <LottieAnimation animationData={test} className="w-64 h-64" />
-
-        <button
-          onClick={() =>
-            addItem({ id: "key", name: "Clé ancienne", icon: "🗝️" })
-          }
-          className="mt-6 px-4 py-2 bg-emerald-600 rounded"
-        >
-          Ramasser la clé
-        </button>
+      <Enigme1 />
       </section>
 
       {/* ----------------- MODALS & INVENTAIRE (modals) ----------------- */}
-
       <button
         onClick={() => setOpenInventory(true)}
         className="fixed top-4 right-4 z-40 bg-slate-700 text-white px-4 py-2 rounded"
@@ -160,7 +146,6 @@ export default function Home() {
         onClose={() => setOpenInventory(false)}
       />
       <ItemObtainedModal />
-      <Enigme1 />
     </main >
   );
 }
