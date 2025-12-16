@@ -1,15 +1,10 @@
-export default function Item({ item }) {
+export default function Item({ item, top, bottom, left, right }) {
   if (!item) return null;
 
   return (
     <div
-      className="
-        w-12 h-12
-        bg-gray-700
-        border-2 border-gray-500
-        flex items-center justify-center
-        text-xl
-      "
+        className={`absolute ${top ?? ""} ${bottom ?? ""} ${left ?? ""} ${right ?? ""} w-12 h-12 flex items-center justify-center text-2xl`}
+
     >
       {item.img ? <img src={item.img} alt={item.name} /> : item.icon}
     </div>
