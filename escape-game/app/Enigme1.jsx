@@ -12,7 +12,7 @@ const PUZZLE_CONFIGS = [
         code: '4', 
         initialImg: "/assets/e1Box.png",
         openImg: "/assets/e1BoxOpen.png",
-        position: { top: 'top-0', left: 'left-0' },
+        position: { top: 'bottom-15', left: 'left-20' },
         prerequisiteItemId: null,
         reward: { id: 'axe', name: 'Hache d’aventurier', img: '/assets/images/axe.png', icon: '🪓' }
     },
@@ -23,9 +23,20 @@ const PUZZLE_CONFIGS = [
         code: null, // Pas de code
         initialImg: "/assets/e1BoxRight.png",
         openImg: "/assets/e1BoxRightOpen.png",
-        position: { top: 'top-0', right: 'right-0' },
+        position: { top: 'bottom-15', right: 'right-20' },
         prerequisiteItemId: 'axe', // REQUIERT la hache
         reward: { id: 'dynamite', name: 'Dynamite', img: '/assets/images/dynamite.png', icon: '💣' }
+    },
+    {
+        id: 'pierres',
+        name: 'Pierres',
+        type: 'prerequisite-only', // Type 2: Nécessite un prérequis, pas de code ni de modale
+        code: null, // Pas de code
+        initialImg: "/assets/e1Pierres.png",
+        openImg: null,
+        position: { top: 'bottom-15', right: 'right-20' },
+        prerequisiteItemId: 'dynamite',
+        reward: { id: 'key', name: 'Droit de passage', img: '#', icon: '🗝️' }
     }
 ];
 
@@ -99,7 +110,7 @@ export default function Enigme1() {
     }
     
     return (
-        <div className="relative">
+        <div className="relative h-full w-full">
             {PUZZLE_CONFIGS.map(puzzle => {
                 const isOpened = openStatuses[puzzle.id];
                 const isReady = !puzzle.prerequisiteItemId || hasItem(puzzle.prerequisiteItemId);
@@ -112,6 +123,7 @@ export default function Enigme1() {
                 };
                 return (
                     <div 
+                        id={puzzle.id}
                         key={puzzle.id} 
                         onClick={() => handleClickBox(puzzle)}
 
