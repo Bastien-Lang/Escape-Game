@@ -27,9 +27,8 @@
 .image {
   background-image: url('/image/test-image.png');
   /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
+  background-size: 200vw 100vh;
 
-  background-position: top left;
-  /* L'image commence tout à gauche */
   background-repeat: no-repeat;
 }
 
