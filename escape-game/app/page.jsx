@@ -1,25 +1,28 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import LottieAnimation from "../app/components/LottieAnimation";
+import test from "../public/lottie/test.json";
+import InventoryModal from "../app/components/InventoryModal";
+import { useInventory } from "../app/context/InventoryContext";
+import ItemObtainedModal from "../app/components/ItemObtainedModal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const mainRef = useRef(null);
+  const lastSectionRef = useRef(null);
+  const [openInventory, setOpenInventory] = useState(false);
+  // Destructuration de l'inventaire pour la logique
+  const { hasItem, addItem } = useInventory();
 
+  // 1. LOGIQUE GSAP (Défilement Horizontal) - Vient de la branche HEAD
   useLayoutEffect(() => {
     const scroller = mainRef.current;
     if (!scroller) return;
 
-    // 🔥 Attendre que le layout soit complètement rendu
-    requestAnimationFrame(() => {
-      scroller.scrollTo({
-        top: scroller.scrollHeight,
-        behavior: "auto",
-      });
-    });
-
+    // Fonction de configuration du défilement horizontal GSAP
     const setupHorizontalScroll = (sectionId, contentClass) => {
       const section = document.querySelector(sectionId);
       if (!section) return;
@@ -48,9 +51,47 @@ export default function Home() {
     ScrollTrigger.refresh();
   }, []);
 
+  // 2. LOGIQUE DE SCROLL INITIAL (Positionnement sur la dernière section) - Vient de la branche modals
+  useEffect(() => {
+    const el = mainRef.current;
+    const section = lastSectionRef.current;
+
+    if (el && section) {
+      // Positionne le scroll au début de la dernière section ('Mine Deeplase')
+      el.scrollTop = section.offsetTop;
+    }
+  }, []);
+
+  // 3. LOGIQUE DE SCROLL VERROUILLÉ (Empêcher de remonter sans la clé) - Vient de la branche modals
+  useEffect(() => {
+    const el = mainRef.current;
+    if (!el) return;
+
+    const onScroll = () => {
+      // Si l'utilisateur n'a pas la clé
+      if (!hasItem("key")) {
+        const lastSectionTop = lastSectionRef.current?.offsetTop || 0;
+
+        // Si la position de scroll est plus haute que la section de départ forcée
+        if (el.scrollTop < lastSectionTop) {
+          // Ramène le scroll à la section de départ
+          el.scrollTop = lastSectionTop;
+        }
+      }
+    };
+
+    el.addEventListener("scroll", onScroll);
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [hasItem]);
+
 
   return (
-    <main ref={mainRef} className="h-screen overflow-y-scroll scroll-smooth">
+    // Combinaison des props ref et className
+    <main
+      ref={mainRef}
+      className="h-screen overflow-y-scroll scroll-smooth snap-y snap-mandatory"
+    >
+      {/* ----------------- SECTIONS VERTICALES (Haut) ----------------- */}
       <section className="h-screen flex flex-col items-center justify-center snap-start bg-slate-900 text-white">
         <h1 className="text-4xl font-bold mb-4">Section de la liberté</h1>
       </section>
@@ -59,6 +100,7 @@ export default function Home() {
         <h2 className="text-3xl font-semibold mb-4">Section dirt</h2>
       </section>
 
+      {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
       <section id="lushcave-section" className="h-screen snap-none overflow-hidden bg-slate-700">
         <div className="maison flex w-[200vw] h-full">
           <div className="w-screen grid place-items-center">
@@ -70,6 +112,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
       <section id="mineshaft" className="h-screen snap-none overflow-hidden bg-slate-600">
         <div className="caverne flex w-[200vw] h-full">
           <div className="w-screen grid place-items-center">
@@ -81,9 +124,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="h-screen flex flex-col items-center justify-center snap-start bg-slate-500 text-white">
-        <h2 className="text-3xl font-semibold mb-4">Section Mine Deeplase</h2>
+      {/* ----------------- SECTION MINE DEEPLASE (Départ Forcé + Lottie) ----------------- */}
+      <section
+        ref={lastSectionRef}
+        className="h-screen flex flex-col items-center justify-center snap-start bg-slate-500 text-white"
+      >
+        <h2 className="text-3xl font-semibold mb-4">
+          Section Mine Deeplase: début de la partie
+        </h2>
+
+        <LottieAnimation animationData={test} className="w-64 h-64" />
+
+        <button
+          onClick={() =>
+            addItem({ id: "key", name: "Clé ancienne", icon: "🗝️" })
+          }
+          className="mt-6 px-4 py-2 bg-emerald-600 rounded"
+        >
+          Ramasser la clé
+        </button>
       </section>
-    </main>
+
+      {/* ----------------- MODALS & INVENTAIRE (modals) ----------------- */}
+
+      <button
+        onClick={() => setOpenInventory(true)}
+        className="fixed top-4 right-4 z-40 bg-slate-700 text-white px-4 py-2 rounded"
+      >
+        Inventaire
+      </button>
+
+      <InventoryModal
+        open={openInventory}
+        onClose={() => setOpenInventory(false)}
+      />
+      <ItemObtainedModal />
+    </main >
   );
 }
