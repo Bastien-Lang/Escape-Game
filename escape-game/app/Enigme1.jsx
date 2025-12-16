@@ -35,11 +35,11 @@ const PUZZLE_CONFIGS = [
         type: 'prerequisite-only', // Type 2: Nécessite un prérequis, pas de code ni de modale
         code: null, // Pas de code
         initialImg: "/assets/e1Pierres.png",
-        openImg: null,
+        openImg: "#",
         position: { top: 'top-[40%]', right: 'right-[10%]', width: 'w-[50%]', height: 'h-[50%]' },
         nextLocation: '#mineshaft',
         prerequisiteItemId: 'dynamite',
-        reward: { id: 'key', name: '', img: '#', icon: '' }
+        reward: { id: 'key', name: 'Droit de passage', img: '#', icon: '' }
     }
 ];
 
@@ -130,18 +130,27 @@ export default function Enigme1() {
         setModalState({ ...modalState, isOpen: false });
     }
 
-    return (
+    
+return (
         <div className="relative h-full w-full">
             {PUZZLE_CONFIGS.map(puzzle => {
                 const isOpened = openStatuses[puzzle.id];
                 const isReady = !puzzle.prerequisiteItemId || hasItem(puzzle.prerequisiteItemId);
+                
+                // NOUVEAU: Vérifie si l'élément doit être masqué (résolu ET openImg est '#')
+                if (isOpened && puzzle.openImg === "#") {
+                    return null; // Ne rend rien si la condition de disparition est remplie
+                }
 
+                // ... le reste du code de définition d'item est le même ...
                 const itemDefinition = {
                     id: puzzle.id,
                     name: isOpened ? `${puzzle.name} (vide)` : puzzle.name,
                     icon: isOpened ? (puzzle.openImg ? puzzle.reward.icon : '✅') : (isReady ? '❓' : '🔒'),
-                    img: isOpened ? (puzzle.openImg || puzzle.initialImg) : puzzle.initialImg,
+                    // L'image reste l'image initiale si openImg est '#'
+                    img: isOpened ? puzzle.initialImg : puzzle.initialImg,
                 };
+                
                 return (
                     <div
                         id={puzzle.id}
