@@ -16,6 +16,7 @@ export default function Home() {
   const [openInventory, setOpenInventory] = useState(false);
   // Destructuration de l'inventaire pour la logique
   const { hasItem, addItem } = useInventory();
+  const showImageWithoutFog = hasItem("key");
 
   // 1. LOGIQUE GSAP (Défilement Horizontal) - Vient de la branche HEAD
   useLayoutEffect(() => {
@@ -63,27 +64,27 @@ export default function Home() {
   }, []);
 
   // 3. LOGIQUE DE SCROLL VERROUILLÉ (Empêcher de remonter sans la clé) - Vient de la branche modals
-  useEffect(() => {
-    const el = mainRef.current;
-    if (!el) return;
-
-    const onScroll = () => {
-      // Si l'utilisateur n'a pas la clé
-      if (!hasItem("key")) {
-        const lastSectionTop = lastSectionRef.current?.offsetTop || 0;
-
-        // Si la position de scroll est plus haute que la section de départ forcée
-        if (el.scrollTop < lastSectionTop) {
-          // Ramène le scroll à la section de départ
-          el.scrollTop = lastSectionTop;
-        }
-      }
-    };
-
-    el.addEventListener("scroll", onScroll);
-    return () => el.removeEventListener("scroll", onScroll);
-  }, [hasItem]);
-
+  /*  useEffect(() => {
+     const el = mainRef.current;
+     if (!el) return;
+ 
+     const onScroll = () => {
+       // Si l'utilisateur n'a pas la clé
+       if (!hasItem("key")) {
+         const lastSectionTop = lastSectionRef.current?.offsetTop || 0;
+ 
+         // Si la position de scroll est plus haute que la section de départ forcée
+         if (el.scrollTop < lastSectionTop) {
+           // Ramène le scroll à la section de départ
+           el.scrollTop = lastSectionTop;
+         }
+       }
+     };
+ 
+     el.addEventListener("scroll", onScroll);
+     return () => el.removeEventListener("scroll", onScroll);
+   }, [hasItem]);
+  */
 
   return (
     // Combinaison des props ref et className
@@ -115,7 +116,8 @@ export default function Home() {
       {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
       <section id="mineshaft" className="h-screen overflow-hidden">
         {/* Application de la classe 'image' ici, sur l'élément qui fait 200vw */}
-        <div className="caverne flex w-[200vw] h-full image">
+        <div className={`caverne flex w-[200vw] h-full ${showImageWithoutFog ? 'image' : 'fog'
+          }`}>
 
           {/* Écran 1: Caverne */}
           <div className="w-screen grid place-items-center">
@@ -138,7 +140,6 @@ export default function Home() {
           Section Mine Deeplase: début de la partie
         </h2>
 
-        <LottieAnimation animationData={test} className="w-64 h-64" />
 
         <button
           onClick={() =>

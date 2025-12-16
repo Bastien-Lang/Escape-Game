@@ -24,13 +24,11 @@
 
 }
 
-.image {
-  background-image: url('/image/test-image.png');
-  /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
-  background-size: 200vw 100vh;
 
-  background-repeat: no-repeat;
-}
+
+
+
+
 
 body {
   background: var(--background);
@@ -38,6 +36,30 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+}
+
+.image {
+  background-image: url('/assets/test-image.png');
+  /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+}
+
+.fog {
+  background-image: url('/assets/fog-image.png');
+  /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+  display: none;
+
+}
+
+.image-mine_deepslate {
+  background-image: url('/assets/minedeepslate_fond_1.png');
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+  display: none;
+
 }
 
 #lushcave-section {
@@ -70,6 +92,8 @@ body {
   /* 2 écrans */
   display: flex;
 }
+
+
 
 #lushcave-section .caverne>div {
   width: 100vw;
