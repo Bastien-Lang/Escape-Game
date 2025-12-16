@@ -119,7 +119,6 @@ export default function Enigme1() {
             solvePuzzle(activePuzzle); // Utilise la fonction de résolution centralisée
             handleCloseModal();
             return true;
-
         } else {
             alert("Code incorrect !");
             return false;
@@ -148,7 +147,7 @@ return (
                     name: isOpened ? `${puzzle.name} (vide)` : puzzle.name,
                     icon: isOpened ? (puzzle.openImg ? puzzle.reward.icon : '✅') : (isReady ? '❓' : '🔒'),
                     // L'image reste l'image initiale si openImg est '#'
-                    img: isOpened ? puzzle.initialImg : puzzle.initialImg,
+                    img: isOpened ? puzzle.openImg : puzzle.initialImg,
                 };
                 
                 return (
