@@ -38,15 +38,14 @@ export default function StartScreen({ onStart }) {
     }, [handleStartGame]); // handleStartGame est dans les dépendances de useCallback
     return (
         <div className="fixed inset-0 bg-gray-900 flex flex-col justify-center items-center z-50 text-white">
-            <img src="/assets/title.svg" alt="Escape the cave" className='w-[30%] mb-4' />
-            <img src="/assets/logo.svg" alt="logo" className='mb-4 mt-4' />
+            <img src="/assets/logo.png" alt="logo" className='mb-4 mt-4' />
             <p
                 className={`text-2xl mt-4 transition-opacity duration-700 ${isBlinking ? 'opacity-100' : 'opacity-30'}`}
-                style={{ fontFamily: 'monospace' }} // Style rétro
+                style={{ fontFamily: 'monospace' }} 
             >
-                {/* Le message classique */}
                 APPUYEZ SUR UNE TOUCHE POUR JOUER
             </p>
+            <p className='mt-4'> Règles : Ne pas quitter la page pendant le jeu. Si vous changez l'URL, ouvrez la dans un nouvel onglet.</p>
         </div>
     );
 } 

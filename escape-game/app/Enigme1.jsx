@@ -11,7 +11,7 @@ const PUZZLE_CONFIGS = [
         name: 'Boîte verrouillée',
         type: 'code', // Type 1: Nécessite un code
         code: '4',
-        initialImg: "/assets/e1Box.png",
+        initialImg: "/assets/e1Box2.png",
         openImg: "/assets/e1BoxOpen.png",
         position: { bottom: 'bottom-[2%]', left: 'left-[10%]' },
         prerequisiteItemId: null,
