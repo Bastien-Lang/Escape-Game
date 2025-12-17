@@ -7,6 +7,7 @@ import { useInventory } from "../app/context/InventoryContext";
 import ItemObtainedModal from "../app/components/ItemObtainedModal";
 import Enigme1 from "./Enigme1";
 import StartScreen from "../app/components/StartScreen";
+import Enigme3 from "./Enigme3";
 
 // Configuration GSAP globale
 gsap.registerPlugin(ScrollTrigger);
@@ -189,8 +190,8 @@ export default function Home() {
               <div className="w-screen grid place-items-center">
                 <h2 className="text-3xl font-bold text-black">Maison</h2>
               </div>
-              <div className="w-screen grid place-items-center">
-                <h2 className="text-3xl font-bold text-black">Lushcave</h2>
+              <div className="w-screen grid place-items-center relative"> 
+                  <Enigme3 />
               </div>
             </div>
           </section>
