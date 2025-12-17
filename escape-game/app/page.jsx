@@ -8,6 +8,7 @@ import ItemObtainedModal from "../app/components/ItemObtainedModal";
 import Enigme1 from "./Enigme1";
 import StartScreen from "../app/components/StartScreen";
 import Enigme3 from "./Enigme3";
+import Enigme4 from "./Enigme4";
 
 // Configuration GSAP globale
 gsap.registerPlugin(ScrollTrigger);
@@ -187,15 +188,19 @@ export default function Home() {
           </section>
 
           {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
-          <section id="lushcave-section" className="h-screen overflow-hidden">
+         <section id="lushcave-section" className="h-screen overflow-hidden">
             <div className={`maison flex w-[200vw] h-full ${showLushCaveWithoutFog ? 'fond_lushcave' : 'fog-lushcave'}`}>
-              <div className="w-screen grid place-items-center">
-                {/* Premier écran de la section Lushcave */}
+              
+              {/* DIV DE GAUCHE (Maison) */}
+              <div className="w-screen grid place-items-center relative"> {/* 👈 AJOUT DE 'relative' ICI */}
+                <Enigme4 />
               </div>
-              <div className="w-screen grid place-items-center">
-                {/* 💡 On n'affiche Enigme3 QUE si showLushCaveWithoutFog est vrai */}
+
+              {/* DIV DE DROITE (Lushcave) */}
+              <div className="w-screen grid place-items-center relative">
                 {showLushCaveWithoutFog && <Enigme3 />}
               </div>
+
             </div>
           </section>
           <section id="mineshaft" className="h-screen overflow-hidden">
