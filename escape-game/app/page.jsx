@@ -206,25 +206,30 @@ export default function Home() {
                   </button>
                 )}
                 {mineState === 'mineshaft' && !isMinecartVideoPlaying && (
-                  <button onClick={handleLeverClick} className="absolute w-20 h-20 z-20" style={{ top: '80%', left: '10%' }}>
-                    <img src={LEVER_ITEM.img} alt="levier" className={hasItem(REPAIR_PART.id) ? '' : 'grayscale opacity-50'} />
+                  <button onClick={handleLeverClick} className="absolute w-40 h-20 z-40" style={{ top: '70%', left: '10%' }}>
+                    <img src={LEVER_ITEM.img} alt="levier" />
                   </button>
                 )}
               </div>
 
               {/* ÉCRAN 2 (Droite) */}
               <div className="w-screen relative grid place-items-center">
-                {mineState === 'initial' && !isMinecartVideoPlaying && (
-                  <button onClick={handleMinecartClick} className="absolute w-60 h-40 z-20 bg-white/10" style={{ top: '68%', left: '15%' }}>
-                    <span className="text-white">Minecart ({minecartClickCount}/{MINECART_CLICKS_REQUIRED})</span>
+                {/* On n'affiche le minecart que si le brouillard est parti (!fog) */}
+                {showImageWithoutFog && mineState === 'initial' && !isMinecartVideoPlaying && (
+                  <button onClick={handleMinecartClick} className="absolute w-140 h-50 z-50 " style={{ top: '68%', left: '28%' }}>
                   </button>
                 )}
-                {!hasMineshaftKey && !isMinecartVideoPlaying && (
-                  <button onClick={handleRepairLocationClick} className="absolute w-40 h-40 z-20" style={{ top: '65%', left: '35%' }}>
-                    <img src={REPAIR_LOCATION.img} className={hasItem(REPAIR_PART.id) ? '' : 'grayscale opacity-50'} />
+
+                {/* On n'affiche la zone de réparation que si le brouillard est parti (!fog) */}
+                {showImageWithoutFog && !hasMineshaftKey && !isMinecartVideoPlaying && (
+                  <button onClick={handleRepairLocationClick} className="absolute w-40 h-40 z-20" style={{ top: '68%', left: '62%' }}>
+                    <img
+                      src={REPAIR_LOCATION.img}
+                      alt="repair location"
+                    />
                   </button>
                 )}
-                <h2 className="text-3xl font-bold text-white">Caverne de Départ</h2>
+
               </div>
 
               {/* VIDÉOS */}
