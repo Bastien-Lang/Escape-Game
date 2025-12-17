@@ -47,6 +47,7 @@ export default function Home() {
   const [isGameStarted, setIsGameStarted] = useState(false);
 
   const showImageWithoutFog = hasItem("key");
+  const showLushCaveWithoutFog = hasItem("key_mineshaft");
   const hasMineshaftKey = hasItem("key_mineshaft");
 
   const handleStart = () => {
@@ -185,17 +186,18 @@ export default function Home() {
             <h1 className="text-4xl font-bold mb-4">Section de la liberté</h1>
           </section>
 
+          {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
           <section id="lushcave-section" className="h-screen overflow-hidden">
-            <div className={`maison flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_lushcave' : 'fog'}`}>
+            <div className={`maison flex w-[200vw] h-full ${showLushCaveWithoutFog ? 'fond_lushcave' : 'fog-lushcave'}`}>
               <div className="w-screen grid place-items-center">
-                <h2 className="text-3xl font-bold text-black">Maison</h2>
+                {/* Premier écran de la section Lushcave */}
               </div>
-              <div className="w-screen grid place-items-center relative"> 
-                  <Enigme3 />
+              <div className="w-screen grid place-items-center">
+                {/* 💡 On n'affiche Enigme3 QUE si showLushCaveWithoutFog est vrai */}
+                {showLushCaveWithoutFog && <Enigme3 />}
               </div>
             </div>
           </section>
-
           <section id="mineshaft" className="h-screen overflow-hidden">
             <div className={`caverne flex w-[200vw] h-full relative ${mineshaftBgClass}`}>
 

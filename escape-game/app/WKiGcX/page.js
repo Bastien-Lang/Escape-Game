@@ -3,6 +3,7 @@
 export default function WKiGcX() {
 
     return (
-        <div> Cliquer 8 fois sur le wagon </div>
+
+        <div className="redirect_url" ></div>
     )
 };

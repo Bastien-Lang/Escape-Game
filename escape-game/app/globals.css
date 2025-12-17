@@ -45,8 +45,7 @@ body {
 }
 
 .fog {
-  background-image: url('/assets/fog-image.png');
-  /* La taille de l'arrière-plan est maintenant fixée à 200% de la largeur de l'élément (.caverne) */
+  background-image: url('/assets/fog-mineshaft.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
   display: none;
@@ -68,12 +67,15 @@ body {
 }
 
 .fond_lushcave {
-  background-image: url('/assets/fond-lushcave.png');
+  background-image: url('/assets/lushcave.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
 
 
 }
+
+
+
 
 
 #lushcave-section {
@@ -154,6 +156,20 @@ body {
 .mineshaft_img_2 {
   background-image: url('/assets/mineshaft_img_2.jpg');
   /* Vérifiez ce chemin */
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+}
+
+.fog-lushcave {
+  background-image: url('/assets/fog-lushcave.png');
+
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+}
+
+
+.redirect_url {
+  background-image: url('/assets/URL_REDIRECTION.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
 }

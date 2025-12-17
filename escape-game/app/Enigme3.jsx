@@ -5,10 +5,10 @@ import { useInventory } from "./context/InventoryContext";
 import ModalNenuphar from "./components/ModalNenuphar";
 
 const NENUPHARS_CONFIG = [
-  { id: 'nenu1', img: "/assets/e3nn1.png", pos: { top: 'top-[20%]', left: 'left-[15%]' } },
-  { id: 'nenu2', img: "/assets/e3nn2.png", pos: { top: 'top-[25%]', left: 'left-[45%]' } },
-  { id: 'nenu3', img: "/assets/e3nn3.png", pos: { top: 'top-[60%]', left: 'left-[30%]' } },
-  { id: 'nenu4', img: "/assets/e3nn4.png", pos: { top: 'top-[55%]', left: 'left-[65%]' } },
+  { id: 'nenu1', img: "/assets/e3nn1.png", pos: { top: 'top-[90%]', left: 'left-[33%]' } },
+  { id: 'nenu2', img: "/assets/e3nn2.png", pos: { top: 'top-[89%]', left: 'left-[49%]' } },
+  { id: 'nenu3', img: "/assets/e3nn3.png", pos: { top: 'top-[88%]', left: 'left-[40%]' } },
+  { id: 'nenu4', img: "/assets/e3nn4.png", pos: { top: 'top-[89%]', left: 'left-[59%]' } },
 ];
 
 export default function Enigme3() {
@@ -39,9 +39,9 @@ export default function Enigme3() {
       {/* Affichage des nénuphars sur la scène */}
       {NENUPHARS_CONFIG.map((nenu) => (
         <div key={nenu.id} onClick={() => !isResolved && setIsModalOpen(true)}>
-          <Item 
-            item={{ id: nenu.id, name: "Nénuphar", img: nenu.img }} 
-            {...nenu.pos} 
+          <Item
+            item={{ id: nenu.id, name: "Nénuphar", img: nenu.img }}
+            {...nenu.pos}
           />
         </div>
       ))}
@@ -54,9 +54,9 @@ export default function Enigme3() {
       )}
 
       {isModalOpen && (
-        <ModalNenuphar 
-          onClose={() => setIsModalOpen(false)} 
-          onResolve={handleResolve} 
+        <ModalNenuphar
+          onClose={() => setIsModalOpen(false)}
+          onResolve={handleResolve}
         />
       )}
     </div>
