@@ -135,20 +135,6 @@ body {
 
 
 
-.mineshaft_img_1 {
-  background-image: url('/assets/.mineshaft_img_1.png');
-  background-size: 200vw 100vh;
-  background-repeat: no-repeat;
-
-}
-
-.mineshaft_img_2 {
-  background-image: url('/assets/.mineshaft_img_2.png');
-  background-size: 200vw 100vh;
-  background-repeat: no-repeat;
-
-}
-
 
 .fond_mineshaft {
   background-image: url('/assets/fond-mineshaft.png');
