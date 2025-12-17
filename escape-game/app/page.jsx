@@ -175,6 +175,7 @@ export default function Home() {
   const mineshaftBgClass = !showImageWithoutFog ? 'fog' :
     (mineState === 'mineshaft' ? 'mineshaft_img_2' : 'mineshaft_img_1');
 
+  // 💡 NOUVEAU : Conditionnement du rendu principal
   return (
     <main ref={mainRef} className="h-screen overflow-y-auto">
       {isGameStarted ? (
