@@ -8,6 +8,8 @@ import InventoryModal from "../app/components/InventoryModal";
 import { useInventory } from "../app/context/InventoryContext";
 import ItemObtainedModal from "../app/components/ItemObtainedModal";
 import Enigme1 from "./Enigme1";
+// 👈 IMPORT DU NOUVEAU COMPOSANT START SCREEN
+import StartScreen from "../app/components/StartScreen"; 
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +18,14 @@ export default function Home() {
   const lastSectionRef = useRef(null);
   const [openInventory, setOpenInventory] = useState(false);
   // Destructuration de l'inventaire pour la logique
-  const { hasItem, addItem } = useInventory();
+  const { hasItem } = useInventory(); // addItem n'est pas utilisé directement ici
   const showImageWithoutFog = hasItem("key");
+  const [isGameStarted, setIsGameStarted] = useState(false);
+
+  // Fonction pour démarrer le jeu
+  const handleStart = () => {
+        setIsGameStarted(true);
+  };
 
 
   // LOGIQUE CURSEUR 
@@ -76,14 +84,15 @@ export default function Home() {
     const el = mainRef.current;
     const section = lastSectionRef.current;
 
-    if (el && section) {
+    // 💡 MODIFICATION : Positionnement initial UNIQUEMENT si le jeu a démarré
+    if (el && section && isGameStarted) {
       // Positionne le scroll au début de la dernière section ('Mine Deeplase')
       el.scrollTop = section.offsetTop;
     }
-  }, []);
+  }, [isGameStarted]); // Déclenché quand le jeu démarre
 
-  // 3. LOGIQUE DE SCROLL VERROUILLÉ (Empêcher de remonter sans la clé) - Vient de la branche modals
-  /*  useEffect(() => {
+  // 3. LOGIQUE DE SCROLL VERROUILLÉ (Empêcher de remonter sans la clé) - Commentée
+  /* useEffect(() => {
      const el = mainRef.current;
      if (!el) return;
  
@@ -105,76 +114,82 @@ export default function Home() {
    }, [hasItem]);
   */
 
+  // 💡 NOUVEAU : Conditionnement du rendu principal
   return (
-    // Combinaison des props ref et className
     <main
       ref={mainRef}
-      className="h-screen  overflow-y-scroll scroll-smooth"
+      className="h-screen overflow-y-scroll scroll-smooth"
     >
-      {/* ----------------- SECTIONS VERTICALES (Haut) ----------------- */}
-      <section className="h-screen  flex flex-col items-center justify-center  bg-slate-900 text-white">
-        <h1 className="text-4xl font-bold mb-4">Section de la liberté</h1>
-      </section>
+      {isGameStarted ? (
+        <>
+            {/*------------- SECTIONS VERTICALES (Haut) ----------------- */}
+          <section className="h-screen  flex flex-col items-center justify-center  bg-slate-900 text-white">
+            <h1 className="text-4xl font-bold mb-4">Section de la liberté</h1>
+          </section>
 
-      <section className="h-screen flex flex-col items-center justify-center  bg-slate-800 text-white">
-        <h2 className="text-3xl font-semibold mb-4">Section dirt</h2>
-      </section>
+          <section className="h-screen flex flex-col items-center justify-center  bg-slate-800 text-white">
+            <h2 className="text-3xl font-semibold mb-4">Section dirt</h2>
+          </section>
 
-      {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
-      <section id="lushcave-section" className="h-screen  overflow-hidden ">
-        <div className={`maison flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_lushcave' : 'fog'}`}>
-          <div className="w-screen grid place-items-center">
-            <h2 className="text-3xl font-bold text-black">Maison</h2>
-          </div>
-          <div className="w-screen grid place-items-center">
-            <h2 className="text-3xl font-bold text-black">Lushcave</h2>
-          </div>
-        </div>
-      </section>
+          {/* ----------------- SECTION LUSHCAVE (GSAP Horizontal) ----------------- */}
+          <section id="lushcave-section" className="h-screen  overflow-hidden ">
+            <div className={`maison flex w-[200vw] h-full ${showImageWithoutFog ? 'fond_lushcave' : 'fog'}`}>
+              <div className="w-screen grid place-items-center">
+                <h2 className="text-3xl font-bold text-black">Maison</h2>
+              </div>
+              <div className="w-screen grid place-items-center">
+                <h2 className="text-3xl font-bold text-black">Lushcave</h2>
+              </div>
+            </div>
+          </section>
 
-      {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
-      <section id="mineshaft" className="h-screen overflow-hidden">
-        {/* Rendre ce conteneur GSAP 'relative' pour ancrer la vidéo absolue */}
-        <div className={`caverne flex w-[200vw] h-full relative ${showImageWithoutFog ? 'fond_mineshaft' : 'fog'
-          }`}>
-          
-          {/* Écran 1: Caverne */}
-          <div className="caverne w-screen grid place-items-center">
-          {/* 💡 MODIFICATION : La vidéo s'étend sur 100% du conteneur (soit 200vw) */}
-          <video src='/assets/Minecart_Aller.mp4' autoPlay loop muted playsInline className="absolute left-0 top-0 w-full h-full object-cover" />
+          {/* ----------------- SECTION MINESHAFT (GSAP Horizontal) ----------------- */}
+          <section id="mineshaft" className="h-screen overflow-hidden">
+            {/* Rendre ce conteneur GSAP 'relative' pour ancrer la vidéo absolue */}
+            <div className={`caverne flex w-[200vw] h-full relative ${showImageWithoutFog ? 'fond_mineshaft' : 'fog'}`}>
+              
+              {/* Écran 1: Caverne */}
+              <div className="caverne w-screen grid place-items-center">
+              {/* 💡 MODIFICATION : La vidéo s'étend sur 100% du conteneur (soit 200vw) */}
+              <video src='/assets/Minecart_Aller.mp4' autoPlay loop muted playsInline className="absolute left-0 top-0 w-full h-full object-cover" />
 
-          {/* Écran 1: Caverne (w-screen) */}
-          <div className="w-screen grid place-items-center z-10">
-            <h2 className="text-3xl font-bold text-white">Caverne</h2>
-          </div>
+              {/* Écran 1: Caverne (w-screen) */}
+              <div className="w-screen grid place-items-center z-10">
+                <h2 className="text-3xl font-bold text-white">Caverne</h2>
+              </div>
 
-          {/* Écran 2: Mineshaft (w-screen) */}
-          <div className="w-screen grid place-items-center z-10">
-            <h2 className="text-3xl font-bold text-white">Mineshaft</h2>
-          </div>
-        </div>
-        </div>
-      </section>
+              {/* Écran 2: Mineshaft (w-screen) */}
+              <div className="w-screen grid place-items-center z-10">
+                <h2 className="text-3xl font-bold text-white">Mineshaft</h2>
+              </div>
+            </div>
+            </div>
+          </section>
 
-      {/* ----------------- SECTION MINE DEEPLASE ----  ------------- */}
-      <section ref={lastSectionRef} className=" image-mine_deepslate h-screen flex flex-col items-center justify-center "
-      >
-        <Enigme1 />
-      </section>
+          {/* ----------------- SECTION MINE DEEPLASE ----  ------------- */}
+          <section ref={lastSectionRef} className=" image-mine_deepslate h-screen flex flex-col items-center justify-center "
+          >
+            <Enigme1 />
+          </section>
 
-      {/* ----------------- MODALS & INVENTAIRE (modals) ----------------- */}
-      <button
-        onClick={() => setOpenInventory(true)}
-        className="fixed top-4 right-4 z-40 bg-slate-700 text-white px-4 py-2 rounded"
-      >
-        Inventaire
-      </button>
+          {/* ----------------- MODALS & INVENTAIRE (modals) ----------------- */}
+          <button
+            onClick={() => setOpenInventory(true)}
+            className="fixed top-4 right-4 z-40 bg-slate-700 text-white px-4 py-2 rounded"
+          >
+            Inventaire
+          </button>
 
-      <InventoryModal
-        open={openInventory}
-        onClose={() => setOpenInventory(false)}
-      />
-      <ItemObtainedModal />
-    </main >
+          <InventoryModal
+            open={openInventory}
+            onClose={() => setOpenInventory(false)}
+          />
+          <ItemObtainedModal />
+        </>
+      ) : (
+        // L'écran de démarrage s'affiche
+        <StartScreen onStart={handleStart} />
+      )}
+    </main>
   );
 }

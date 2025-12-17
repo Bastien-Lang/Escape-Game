@@ -16,7 +16,7 @@ export function InventoryProvider({ children }) {
     // auto close après 2s
     setTimeout(() => {
       setObtainedItem(null);
-    }, 2000);
+    }, 3000);
   };
 
   const hasItem = (id) => items.some((i) => i.id === id);
