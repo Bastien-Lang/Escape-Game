@@ -45,7 +45,7 @@ body {
 }
 
 .fog {
-  background-image: url('/assets/fog-mineshaft.png');
+  background-image: url('/assets/mineshaft-fog.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
   display: none;
