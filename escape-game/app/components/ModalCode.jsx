@@ -10,7 +10,7 @@ export default function ModalCode({ onClose, onCodeSubmit }) {
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+        <div className="absolute inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
             
             <div 
               

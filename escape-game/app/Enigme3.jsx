@@ -46,13 +46,6 @@ export default function Enigme3() {
         </div>
       ))}
 
-      {/* Message si déjà résolu */}
-      {isResolved && (
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 bg-amber-900/80 p-2 rounded border border-amber-600 text-amber-100">
-          Les nénuphars brillent d'une lueur dorée...
-        </div>
-      )}
-
       {isModalOpen && (
         <ModalNenuphar
           onClose={() => setIsModalOpen(false)}
