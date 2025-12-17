@@ -170,6 +170,8 @@ body {
 
 .redirect_url {
   background-image: url('/assets/URL_REDIRECTION.png');
-  background-size: 200vw 100vh;
+  background-size: 100vw 100vh;
   background-repeat: no-repeat;
+  min-height: 100vh;
+
 }
