@@ -327,7 +327,7 @@ export default function Home() {
                 onClick={handleLeverClick}
                 className="absolute w-20 h-20 bg-transparent z-20 cursor-pointer"
                 // Position sur l'Écran 1 (ex: 80vw)
-                style={{ top: '40%', left: '40%' }}
+                style={{ top: '83%', left: '7%%' }}
               >
                 {/* Affichage de l'image du levier */}
                 <img
@@ -355,7 +355,7 @@ export default function Home() {
                 onClick={handleMinecartClick}
                 className="absolute w-60 h-40 bg-transparent z-20 cursor-pointer"
                 // Position sur l'Écran 2 (ex: 160vw)
-                style={{ top: '75%', left: '80%' }}
+                style={{ top: '68%', left: '67%' }}
               >
                 <span className="absolute inset-0 text-white/50 text-sm flex items-center justify-center">
                   Minecart ({minecartClickCount}/{MINECART_CLICKS_REQUIRED})
@@ -371,7 +371,7 @@ export default function Home() {
                   onClick={handleRepairLocationClick}
                   className="absolute w-40 h-40 bg-transparent z-20 cursor-pointer"
                   // Position sur l'Écran 2 (ex: 140vw)
-                  style={{ top: '65%', left: '70%' }}
+                  style={{ top: '65%', left: '81%' }}
                 >
                   <img
                     src={REPAIR_LOCATION.img}
