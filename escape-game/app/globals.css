@@ -67,7 +67,7 @@ body {
 }
 
 .fond_lushcave {
-  background-image: url('/assets/lushcave.png');
+  background-image: url('/assets/lushcave-maison-vide.png');
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
 
@@ -146,7 +146,7 @@ body {
 
 /* 🚨 NOUVELLE (ou confirmée) CLASSE pour l'état initial (Minecart statique) */
 .mineshaft_img_1 {
-  background-image: url('/assets/mineshaft_img_1.jpg');
+  background-image: url('/assets/mineshaft-fog-gauche.png');
   /* Vérifiez ce chemin */
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
@@ -154,7 +154,7 @@ body {
 
 /* 🚨 NOUVELLE (ou confirmée) CLASSE pour l'état Mineshaft (après l'aller) */
 .mineshaft_img_2 {
-  background-image: url('/assets/mineshaft_img_2.jpg');
+  background-image: url('/assets/mineshaft-minecart-gauche.png');
   /* Vérifiez ce chemin */
   background-size: 200vw 100vh;
   background-repeat: no-repeat;
@@ -174,4 +174,42 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
 
+}
+
+.mineshaft_final {
+  background-image: url('/assets/mineshaft.png');
+  background-size: 200vw 100vh;
+  background-repeat: no-repeat;
+}
+
+
+/* 1. Brouillard total (début du jeu) */
+.fog-lushcave {
+  background-image: url('/assets/fog-lushcave.png');
+  background-size: 200vw 100vh;
+}
+
+/* 2. Arrivée du Mineshaft : Liane fermée + Brouillard gauche */
+.lushcave_liane_fermee {
+  background-image: url('/assets/fog-gauche-lushcave-lianne-fermee.png');
+  background-size: 200vw 100vh;
+}
+
+/* 3. Après vidéo liane : Liane ouverte + Brouillard gauche */
+.lushcave_liane_ouverte {
+  background-image: url('/assets/liane-ouverte-fog-gauche.png');
+  background-size: 200vw 100vh;
+}
+
+/* 4. Énigme nénuphar finie : Maison vide (brouillard dissipé) */
+.lushcave_final {
+  background-image: url('/assets/lushcave-maison-vide.png');
+  background-size: 200vw 100vh;
+}
+
+.liberte {
+  background-image: url('/assets/liberte.png');
+
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
 }

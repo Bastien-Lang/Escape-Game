@@ -4,24 +4,20 @@ import Item from "./components/Item";
 import { useInventory } from "./context/InventoryContext";
 import ModalClock from "./components/ModalClock";
 import ModalCode from "./components/ModalCode";
-import ModalNote from "./components/ModalNote"; // 👈 On importe la nouvelle modale
+import ModalNote from "./components/ModalNote";
 
-export default function Enigme4() {
-    const { addItem } = useInventory();
-    
+// 💡 Récupération des deux props pour les vidéos
+export default function Enigme4({ onChestOpen, onClockOpen }) {
+    const { addItem, hasItem } = useInventory();
+
     const [solved, setSolved] = useState({
         clock: false,
         chest: false
     });
 
-    // État mis à jour pour inclure 'note'
     const [activeModal, setActiveModal] = useState(null);
 
-    useEffect(() => {
-        const savedClock = localStorage.getItem("e4_clock_solved") === "true";
-        const savedChest = localStorage.getItem("e4_chest_solved") === "true";
-        setSolved({ clock: savedClock, chest: savedChest });
-    }, []);
+    const canSeeEnigme4 = hasItem("golden_key");
 
     const handleClockSuccess = () => {
         const rung1 = {
@@ -30,6 +26,12 @@ export default function Enigme4() {
             img: '/assets/images/rung.png',
             icon: '🪵'
         };
+
+        // 🎬 Déclenchement de la vidéo horloge
+        if (onClockOpen) {
+            onClockOpen();
+        }
+
         addItem(rung1);
         setSolved(prev => ({ ...prev, clock: true }));
         setActiveModal(null);
@@ -43,9 +45,16 @@ export default function Enigme4() {
                 img: '/assets/images/rung.png',
                 icon: '🪵'
             };
+
+            // 🎬 Déclenchement de la vidéo coffre
+            if (onChestOpen) {
+                onChestOpen();
+            }
+
             addItem(rung2);
             setSolved(prev => ({ ...prev, chest: true }));
             setActiveModal(null);
+
             return true;
         } else {
             alert("Le verrou refuse de tourner...");
@@ -53,68 +62,61 @@ export default function Enigme4() {
         }
     };
 
+    if (!canSeeEnigme4) {
+        return null;
+    }
+
     return (
         <div className="relative h-full w-full">
             {/* L'Horloge */}
             <div onClick={() => !solved.clock && setActiveModal('clock')}>
-                <Item 
+                <Item
                     item={{
                         id: 'clock',
                         name: solved.clock ? "Horloge réparée" : "Horloge ancienne",
-                        img:"/assets/clock.png"
-                    }} 
-                    top={"top-[20%]"} 
-                    left={"left-[30%]"} 
+                        img: solved.clock ? "/assets/open_clock.png" : "/assets/clock.png"
+                    }}
+                    top={"top-[20%]"}
+                    left={"left-[44%]"}
                 />
             </div>
 
-            {/* Le Papier (Note) - Nouveau ! */}
+            {/* Le Papier (Note) */}
             <div onClick={() => setActiveModal('note')}>
-                <Item 
+                <Item
                     item={{
                         id: 'note',
                         name: "Une note griffonnée",
                         img: "/assets/papier.png"
-                    }} 
-                    top={"top-[70%]"} 
-                    left={"left-[20%]"} 
+                    }}
+                    top={"bottom-[5%]"}
+                    left={"left-[20%]"}
                 />
             </div>
 
             {/* Le Coffre */}
             <div onClick={() => !solved.chest && setActiveModal('chest')}>
-                <Item 
+                <Item
                     item={{
                         id: 'chest',
                         name: solved.chest ? "Coffre vide" : "Coffre scellé",
                         img: solved.chest ? "/assets/coffre_open.png" : "/assets/coffre.png"
-                    }} 
-                    top={"top-[50%]"} 
-                    left={"left-[60%]"} 
+                    }}
+                    top={"top-[60%]"}
+                    left={"left-[40%]"}
                 />
             </div>
 
-            {/* Rendu conditionnel des modales */}
             {activeModal === 'clock' && (
-                <ModalClock 
-                    onClose={() => setActiveModal(null)} 
-                    onSuccess={handleClockSuccess} 
-                />
+                <ModalClock onClose={() => setActiveModal(null)} onSuccess={handleClockSuccess} />
             )}
 
             {activeModal === 'chest' && (
-                <ModalCode 
-                    onClose={() => setActiveModal(null)} 
-                    onCodeSubmit={handleChestCode} 
-                />
+                <ModalCode onClose={() => setActiveModal(null)} onCodeSubmit={handleChestCode} />
             )}
 
-            {/* Nouvelle Modale Note */}
             {activeModal === 'note' && (
-                <ModalNote 
-                    onClose={() => setActiveModal(null)} 
-                    code="8246" 
-                />
+                <ModalNote onClose={() => setActiveModal(null)} code="8246" />
             )}
         </div>
     );
