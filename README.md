@@ -7,8 +7,8 @@
 **Escape The Cave** est une expérience narrative et interactive de type **Escape Game**, développée avec **Next.js** et **GSAP**. Plongez dans un univers inspiré de *Minecraft*, résolvez des énigmes, collectez des objets et réparez des mécanismes pour vous échapper des profondeurs de la grotte.
 
 ---
-## Vidéo de résolution
-[text](https://youtu.be/SF_qKlVypFo)
+
+[Vidéo de résolution](https://youtu.be/SF_qKlVypFo)
 
 ---
 
