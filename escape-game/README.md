@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+#  Escape Game — *Escape The Cave*
+
+![Aperçu du jeu](public/assets/page-acceuil.png)
+
+**Escape The Cave** est une expérience narrative et interactive de type **Escape Game**, développée avec **Next.js** et **GSAP**. Plongez dans un univers inspiré de *Minecraft*, résolvez des énigmes, collectez des objets et réparez des mécanismes pour vous échapper des profondeurs de la grotte.
+
+---
+## Vidéo de résolution
+[text](https://youtu.be/SF_qKlVypFo)
+
+---
+
+##  Fonctionnalités
+
+- **Navigation horizontale immersive**  
+  Défilement horizontal fluide géré par **GSAP ScrollTrigger** pour explorer les différentes sections du jeu.
+
+- **Système d’inventaire**  
+  Collecte et utilisation d’objets clés : clés, engrenages, bâtons, etc.
+
+- **Énigmes interactives**  
+  Mécanismes à réparer, portes à déverrouiller et interactions contextuelles.
+
+- **Cinématiques dynamiques**  
+  Vidéos plein écran synchronisées avec la progression : voyage en minecart, activation de mécanismes, générique final.
+
+- **Ambiance sonore immersive**  
+  Bande-son adaptative lancée au démarrage avec contrôleur de volume intégré.
+
+- **Système de brouillard (Fog)**  
+  Les zones du niveau se dévoilent uniquement après la résolution des énigmes précédentes, renforçant la progression visuelle.
+
+---
+
+##  Technologies utilisées
+
+- **Framework** : Next.js 14+ (App Router)
+- **Animations & Scroll** : GSAP (ScrollTrigger, Context)
+- **Styling** : Tailwind CSS
+- **Gestion d’état** : React Context API (inventaire)
+- **Assets** : Images PNG et vidéos MP4 personnalisées
+
+---
+
+##  Installation et lancement
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/votre-utilisateur/escape-game.git
+cd escape-game
+```
+
+### 2. Installer les dépendances
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+### 3. Lancer le serveur de développement
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Accéder au jeu
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Ouvrez votre navigateur à l’adresse :  
+**http://localhost:3000**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+##  Configuration du volume
 
-To learn more about Next.js, take a look at the following resources:
+Un contrôleur discret est disponible en bas à gauche de l’écran dès le lancement du jeu. Il permet d’ajuster le volume ou de couper totalement le son pour une expérience personnalisée.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contexte du projet
 
-## Deploy on Vercel
+Projet développé pour un examen en 3ème année de BUT Métiers du Multimédia et de l'Internet.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
